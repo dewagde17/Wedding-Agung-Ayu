@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { db } from "./lib/firebase";
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import Judul from "../app/main/judul";
@@ -13,7 +13,6 @@ export default function Home() {
   const [person, setPerson] = useState<{ id: string, nama: string } | null>(null);
 
   const searchParams = useSearchParams();
-  const router = useRouter();
   const id = searchParams.get('id');
 
   useEffect(() => {

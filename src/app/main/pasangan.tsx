@@ -12,33 +12,33 @@ export default function Pasangan() {
   const [modal, setModal] = useState<{ type: 'groom' | 'bride'; index: number } | null>(null);
 
   // Fade effect
-  const [groomFade, setGroomFade] = useState(true);
-  const [brideFade, setBrideFade] = useState(true);
+  // const [groomFade, setGroomFade] = useState(true);
+  // const [brideFade, setBrideFade] = useState(true);
 
-  useEffect(() => {
-    const groomTimer = setInterval(() => {
-      setGroomFade(false);
-      setTimeout(() => {
-        setGroomIndex((prev) => (prev + 1) % groomImages.length);
-        setGroomFade(true);
-      }, 300);
-    }, 4000);
+  // useEffect(() => {
+  //   const groomTimer = setInterval(() => {
+  //     setGroomFade(false);
+  //     setTimeout(() => {
+  //       setGroomIndex((prev) => (prev + 1) % groomImages.length);
+  //       setGroomFade(true);
+  //     }, 300);
+  //   }, 4000);
 
-    const brideTimer = setInterval(() => {
-      setBrideFade(false);
-      setTimeout(() => {
-        setBrideIndex((prev) => (prev + 1) % brideImages.length);
-        setBrideFade(true);
-      }, 300);
-    }, 4000);
+  //   const brideTimer = setInterval(() => {
+  //     setBrideFade(false);
+  //     setTimeout(() => {
+  //       setBrideIndex((prev) => (prev + 1) % brideImages.length);
+  //       setBrideFade(true);
+  //     }, 300);
+  //   }, 4000);
 
-    return () => {
-      clearInterval(groomTimer);
-      clearInterval(brideTimer);
-    };
-  }, []);
+  //   return () => {
+  //     clearInterval(groomTimer);
+  //     clearInterval(brideTimer);
+  //   };
+  // }, []);
 
-  const activeImages = modal?.type === 'groom' ? groomImages : brideImages;
+  // const activeImages = modal?.type === 'groom' ? groomImages : brideImages;
 
   return (
     <div className="grid md:grid-cols-2 gap-10 md:gap-6 px-4 sm:px-6 md:px-10 lg:px-20 xl:px-32 2xl:px-48 pt-8 pb-10">

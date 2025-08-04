@@ -40,11 +40,11 @@ function Penutup() {
     </p> <br />
 
         <p className="text-sm md:text-xl font-lora leading-relaxed text-[#5f3c2d] px-16 md:px-24 lg:px-40">
-          "Dalam sebuah pernikahan kalian disatukan demi sebuah kebahagiaan
+          &quot;Dalam sebuah pernikahan kalian disatukan demi sebuah kebahagiaan
           dengan janji hati untuk saling membahagiakan. Bersamaku engkau akan
           hidup selamanya karena Tuhan pasti akan memberikan karunia sebagai
           pelindung dan saksi dalam pernikahan ini. Untuk itulah kalian
-          dipersatukan dalam satu keluarga".
+          dipersatukan dalam satu keluarga&quot;.
         </p>
          <h1 className="text-5xl md:text-7xl font-extrabold tangerine-bold text-[#5f3c2d] pt-10">
           Terima Kasih
