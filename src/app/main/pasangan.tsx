@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 
 
-const groomImages = ['/img/pria1.jpg', '/img/pria.jpg'];
-const brideImages = ['/img/wanita1.jpg', '/img/wanita.jpg'];
+const groomImages = ['/img/pria1.JPG', '/img/pria.JPG'];
+const brideImages = ['/img/wanita1.JPG', '/img/wanita.JPG'];
 
 export default function Pasangan() {
   const [groomIndex, setGroomIndex] = useState(0);
