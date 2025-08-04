@@ -12,33 +12,33 @@ export default function Pasangan() {
   const [modal, setModal] = useState<{ type: 'groom' | 'bride'; index: number } | null>(null);
 
   // Fade effect
-  // const [groomFade, setGroomFade] = useState(true);
-  // const [brideFade, setBrideFade] = useState(true);
+  const [,setGroomFade] = useState(true);
+  const [, setBrideFade] = useState(true);
 
-  // useEffect(() => {
-  //   const groomTimer = setInterval(() => {
-  //     setGroomFade(false);
-  //     setTimeout(() => {
-  //       setGroomIndex((prev) => (prev + 1) % groomImages.length);
-  //       setGroomFade(true);
-  //     }, 300);
-  //   }, 4000);
+  useEffect(() => {
+    const groomTimer = setInterval(() => {
+      setGroomFade(false);
+      setTimeout(() => {
+        setGroomIndex((prev) => (prev + 1) % groomImages.length);
+        setGroomFade(true);
+      }, 300);
+    }, 4000);
 
-  //   const brideTimer = setInterval(() => {
-  //     setBrideFade(false);
-  //     setTimeout(() => {
-  //       setBrideIndex((prev) => (prev + 1) % brideImages.length);
-  //       setBrideFade(true);
-  //     }, 300);
-  //   }, 4000);
+    const brideTimer = setInterval(() => {
+      setBrideFade(false);
+      setTimeout(() => {
+        setBrideIndex((prev) => (prev + 1) % brideImages.length);
+        setBrideFade(true);
+      }, 300);
+    }, 4000);
 
-  //   return () => {
-  //     clearInterval(groomTimer);
-  //     clearInterval(brideTimer);
-  //   };
-  // }, []);
+    return () => {
+      clearInterval(groomTimer);
+      clearInterval(brideTimer);
+    };
+  }, []);
 
-  // const activeImages = modal?.type === 'groom' ? groomImages : brideImages;
+  const activeImages = modal?.type === 'groom' ? groomImages : brideImages;
 
   return (
     <div className="grid md:grid-cols-2 gap-10 md:gap-6 px-4 sm:px-6 md:px-10 lg:px-20 xl:px-32 2xl:px-48 pt-8 pb-10">
@@ -54,14 +54,14 @@ export default function Pasangan() {
           key={i}
           src={img}
           alt="Groom"
-          className={`absolute inset-0 w-full h-full object-cover transition duration-1000 ease-in-out-expo ${
+          className={`absolute inset-0 w-full h-full object-cover transition duration-1000 ease-in-out-expo z-10 ${
             i === groomIndex
               ? 'opacity-100 visible md:group-hover:scale-105 md:group-hover:brightness-75'
               : 'opacity-0 invisible'
           }`}
         />
       ))}
-      <div className="absolute inset-0 bg-black opacity-5 z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-black opacity-5 z-0 pointer-events-none" />
     </div>
 
     {/* Text */}
@@ -126,6 +126,57 @@ export default function Pasangan() {
       </button>
     </div>
   </div>
+  {/* Modal */}
+      {modal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80" onClick={() => setModal(null)}>
+          <div className="relative max-w-2xl max-h-[90%]" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={activeImages[modal.index]}
+              alt="Zoom"
+              className="max-w-full max-h-[90vh] object-contain"
+            />
+
+            {/* Close Button */}
+            <button
+              onClick={() => setModal(null)}
+              className="fixed top-5 right-5 text-white text-3xl font-bold bg-black/30 hover:bg-black/50 rounded-full px-3 py-1 cursor-pointer"
+            >
+              ×
+            </button>
+
+            {/* Prev */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setModal((prev) =>
+                  prev && { ...prev, index: (prev.index - 1 + activeImages.length) % activeImages.length }
+                );
+              }}
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-white text-4xl bg-black/40 hover:bg-white/20 px-4 py-2 rounded-full cursor-pointer"
+            >
+              ‹
+            </button>
+
+            {/* Next */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setModal((prev) =>
+                  prev && { ...prev, index: (prev.index + 1) % activeImages.length }
+                );
+              }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-white text-4xl bg-black/40 hover:bg-white/20 px-4 py-2 rounded-full cursor-pointer"
+            >
+              ›
+            </button>
+
+            {/* Indicator */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm bg-black/40 px-3 py-1 rounded-full">
+              {modal.index + 1} / {activeImages.length}
+            </div>
+          </div>
+        </div>
+      )}
 </div>
 
   );
