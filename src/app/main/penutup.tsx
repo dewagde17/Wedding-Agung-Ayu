@@ -1,5 +1,3 @@
-
-import { useEffect, useState, useRef } from "react";
 import "animate.css";
 
 function Penutup() {
