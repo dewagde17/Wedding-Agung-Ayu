@@ -28,25 +28,25 @@ function Penutup() {
              max-w-[500px] object-contain z-0 pointer-events-none scale-x-[-1]"
 />
 
-    <div className="relative text-white flex flex-col justify-center items-center h-full text-center pt-10 pb-40">  
-     <p className="text-md md:text-lg font-lora-i leading-relaxed text-[#5f3c2d]">
+    <div className="relative text-white flex flex-col justify-center items-center h-full text-center pt-10 pb-40 space-y-2">  
+     <p className="text-md md:text-lg lg:text-2xl font-lora-i leading-relaxed text-[#5f3c2d]">
           (Rgveda : X.85.36)
-         </p>    <br />
-    <p className="text-base md:text-xl font-lora-i leading-relaxed text-[#5f3c2d] px-8">
+         </p>    
+    <p className="text-sm md:text-md lg:text-xl font-lora-i leading-relaxed text-[#5f3c2d] px-8">
       Grbhnāmi te saubhagatvāya hastam,<br />
       Mayā patyā jaradastir yathāsah,<br />
       Bhago aryamā savitā puramdhir,<br />
       Mahyam tvādurgārhapatyāya devāh.
     </p> <br />
 
-        <p className="text-sm md:text-xl font-lora leading-relaxed text-[#5f3c2d] px-16 md:px-24 lg:px-40">
+        <p className="text-xs md:text-sm lg:text-lg font-lora leading-relaxed text-[#5f3c2d] px-16 sm:px-24 lg:px-40">
           &quot;Dalam sebuah pernikahan kalian disatukan demi sebuah kebahagiaan
           dengan janji hati untuk saling membahagiakan. Bersamaku engkau akan
           hidup selamanya karena Tuhan pasti akan memberikan karunia sebagai
           pelindung dan saksi dalam pernikahan ini. Untuk itulah kalian
           dipersatukan dalam satu keluarga&quot;.
         </p>
-         <h1 className="text-5xl md:text-7xl font-extrabold tangerine-bold text-[#5f3c2d] pt-10">
+         <h1 className="text-[40px] sm:text-6xl xl:text-7xl font-extrabold tangerine-bold text-[#5f3c2d] pt-10">
           Terima Kasih
         </h1>
   </div>

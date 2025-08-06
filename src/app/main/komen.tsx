@@ -69,7 +69,7 @@ export default function WeddingWishes() {
   };
 
   return (
-    <div className="min-h-screen pt-40 pb-40 px-8 text-white bg-[#875740] relative">
+    <div className="min-h-screen pt-40 pb-40 px-8 text-white bg-[#704D34] relative">
       <img
         src="/img/bgkom.png"
         alt="Bunga Kiri"
@@ -89,7 +89,7 @@ export default function WeddingWishes() {
           <img
             src="/img/line-p.png"
             alt="Ornamen Pembatas"
-            className="mx-auto w-52 sm:w-64 md:w-80 mb-6 mt-1"
+            className="mx-auto w-64 md:w-80 mb-6 mt-1"
           />
           <form className="space-y-4" onSubmit={handleSubmit}>
             <input
@@ -112,7 +112,7 @@ export default function WeddingWishes() {
             </div>
             <button
               type="submit"
-              className="w-full py-4 bg-[#3d432b] hover:bg-[#4f5a3a] text-white rounded-md cursor-pointer viaoda-libre-regular"
+              className="w-full py-2 sm:py-2.5 md:py-3 lg:py-3.5 xl:py-4 bg-[#3d432b] hover:bg-[#4f5a3a] text-white text-sm lg:text-base rounded-md cursor-pointer viaoda-libre-regular"
 
             >
               Kirim
@@ -129,15 +129,15 @@ export default function WeddingWishes() {
       messages.map((message) => (
         <div
           key={message.id}
-          className="p-3 bg-gray-100 rounded-md shadow-inner flex items-start space-x-4"
+          className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 xl:p-4 bg-gray-100 rounded-md shadow-inner flex items-start space-x-4"
         >
-          <div className="w-8 h-8 rounded-full bg-[#875740] text-white flex items-center justify-center text-sm font-bold">
+          <div className="w-8 h-8 rounded-full bg-[#875740] text-white flex items-center justify-center text-xs sm:text-sm font-bold">
             {getInitials(message.name)}
           </div>
           <div>
-            <p className="text-black text-md font-lora">{message.name}</p>
-            <p className="text-black/80 text-sm font-lora">{message.wish}</p>
-            <p className="text-black/80 text-xs font-lora">
+            <p className="text-black text-xs sm:text-sm lg:text-base font-lora-b">{message.name}</p>
+            <p className="text-black/70 text-[10px] sm:text-xs lg:text-sm font-lora">{message.wish}</p>
+            <p className="text-black/70 text-[8px] sm:text-[10px] lg:text-xs font-lora">
               {new Date(message.date.seconds * 1000).toLocaleString()}
             </p>
           </div>

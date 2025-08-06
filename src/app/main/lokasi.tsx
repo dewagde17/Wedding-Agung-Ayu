@@ -82,16 +82,16 @@ function Lokasi() {
             <div className="text-[#5f3c2d]">
               <h2 className="text-4xl sm:text-5xl tangerine-bold mb-2 ">Pawiwahan</h2>
               <div className="flex items-center justify-center">
-                <span className="text-5xl viaoda-libre-regular mr-2">27</span>
+                <span className="text-4xl md:text-[42px] lg:text-5xl viaoda-libre-regular mr-2">27</span>
                 <div className="text-left">
-                  <p className="text-base sm:text-lg font-lora">Rabu, Agustus 2025</p>
-                  <p className="text-base sm:text-lg font-lora">09:00 - 12:00 WITA</p>
+                  <p className="text-sm md:text-base lg:text-lg font-lora">Rabu, Agustus 2025</p>
+                  <p className="text-sm md:text-base lg:text-lg font-lora">09:00 - 12:00 WITA</p>
                 </div>
               </div>
             </div>
 
             {/* Lokasi */}
-            <div className="flex items-center justify-center text-md sm:text-xl pb-4 mt-2">
+            <div className="flex items-center justify-center text-sm md:text-base lg:text-lg pb-4 mt-2">
               <i className="fa-solid fa-location-dot mr-4 text-[#5f3c2d]"></i>
               <p className="font-lora text-[#5f3c2d]">Banjar Dinas Asah Badung,<br /> Desa Sepang Kelod</p>
             </div>
@@ -105,7 +105,7 @@ function Lokasi() {
                 rel="noopener noreferrer"
                 className="group inline-block border-t border-black/50 pt-4 text-sm font-medium tracking-widest text-[#5f3c2d] hover:text-[#D7C5AE] transition-all duration-200"
               >
-                <span className="flex items-center gap-2 font-lora">
+                <span className="flex items-center gap-2 font-lora text-xs md:text-sm">
                   SIMPAN TANGGAL
                   <span className="text-xl group-hover:translate-x-1 transition-transform duration-200">
                     &gt;
@@ -118,7 +118,7 @@ function Lokasi() {
                 onClick={() => openModal('pawiwahan')}
                 className="group inline-block border-t border-black/50 pt-4 text-sm font-medium tracking-widest text-[#5f3c2d] hover:text-[#D7C5AE] transition-all duration-200 cursor-pointer"
               >
-                <span className="flex items-center gap-2 font-lora">
+                <span className="flex items-center gap-2 font-lora text-xs md:text-sm">
                   LOKASI ACARA
                   <span className="text-xl group-hover:translate-x-1 transition-transform duration-200">
                     &gt;
@@ -139,19 +139,19 @@ function Lokasi() {
             }`}
           >
             {/* Judul dan Waktu */}
-            <div className="text-[#5f3c2d]">
-              <h2 className="text-4xl sm:text-5xl tangerine-bold mb-2">Resepsi Nikah</h2>
+            <div className="text-[#5f3c2d] tangerine-bold">
+              <h2 className="text-4xl sm:text-5xl mb-2">Resepsi Nikah</h2>
               <div className="flex items-center">
-                <span className="text-5xl viaoda-libre-regular mr-2">31</span>
+                <span className="text-4xl md:text-[42px] lg:text-5xl viaoda-libre-regular mr-2">31</span>
                 <div className="flex flex-col justify-center text-left">
-                  <p className="text-base sm:text-lg font-lora">Minggu, Agustus 2024</p>
-                  <p className="text-base sm:text-lg font-lora ">18:00 - 21:00 WITA</p>
+                  <p className="text-sm md:text-base lg:text-lg font-lora">Minggu, Agustus 2024</p>
+                  <p className="text-sm md:text-base lg:text-lg font-lora ">18:00 - 21:00 WITA</p>
                 </div>
               </div>
             </div>
 
             {/* Lokasi */}
-            <div className="flex items-center text-md sm:text-xl pb-4 mt-2">
+            <div className="flex items-center text-sm md:text-base lg:text-lg pb-4 mt-2">
               <i className="fa-solid fa-location-dot mr-2 text-[#5f3c2d]"></i>
               <p className="text-[#5f3c2d] font-lora">Balai Pertemuan Bhumiku</p>
             </div>
@@ -164,7 +164,7 @@ function Lokasi() {
                 rel="noopener noreferrer"
                 className="group inline-block border-t border-black/50 pt-4 text-sm font-medium tracking-widest text-[#5f3c2d] hover:text-[#D7C5AE] transition-all duration-200"
               >
-                <span className="flex items-center gap-2 font-lora">
+                <span className="flex items-center gap-2 font-lora text-xs md:text-sm">
                   SIMPAN TANGGAL
                   <span className="text-xl group-hover:translate-x-1 transition-transform duration-200">
                     &gt;
@@ -177,7 +177,7 @@ function Lokasi() {
                 onClick={() => openModal('resepsi')}
                 className="group inline-block border-t border-black/50 pt-4 text-sm font-medium tracking-widest text-[#5f3c2d] hover:text-[#D7C5AE] transition-all duration-200 cursor-pointer"
               >
-                <span className="flex items-center gap-2 font-lora">
+                <span className="flex items-center gap-2 font-lora text-xs md:text-sm">
                   LOKASI ACARA
                   <span className="text-xl group-hover:translate-x-1 transition-transform duration-200">
                     &gt;

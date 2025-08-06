@@ -47,7 +47,7 @@ const Countdown = () => {
   {/* Section Countdown */}
   <div className="flex flex-col items-center text-center pt-4 pb-4 bg-[#704D34]">
     {/* Judul */}
-    <h2 className="text-xl md:text-3xl mb-6 text-white viaoda-libre-regular">Minggu, 31 Agustus 2025</h2>
+    <h2 className="text-xl md:text-2xl lg:text-3xl mb-6 text-white viaoda-libre-regular">Minggu, 31 Agustus 2025</h2>
 
     {/* Kotak-kotak countdown */}
     <div className="flex flex-wrap justify-center items-center gap-3 md:gap-6 viaoda-libre-regular">
@@ -61,7 +61,7 @@ const Countdown = () => {
           key={item.label}
           className="bg-white bg-opacity-70 rounded-xl shadow-md py-5 md:py-8 w-20 md:w-28"
         >
-          <p className="text-xl md:text-3xl text-gray-800">{item.value}</p>
+          <p className="text-xl md:text-2xl lg:text-3xl text-gray-800">{item.value}</p>
           <p className="text-xs md:text-base text-gray-700 mt-1">{item.label}</p>
         </div>
       ))}

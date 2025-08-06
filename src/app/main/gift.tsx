@@ -27,33 +27,33 @@ export default function WeddingGift() {
 
   return (
     <section className="py-16 px-4 text-center text-[#593131]">
-      <h2 className="text-[45px] sm:text-5xl md:text-6xl text-[#5f3c2d] tangerine-bold">Wedding Gift</h2>
+      <h2 className="text-5xl lg:text-6xl text-[#5f3c2d] tangerine-bold">Wedding Gift</h2>
       <img
         src="/img/line-cok.png"
         alt="Ornamen Pembatas"
-        className="mx-auto w-52 sm:w-64 md:w-80 mb-4"
+        className="mx-auto w-60 lg:w-80 mb-4"
       />
-      <p className="text-md max-w-5xl mx-auto mb-10 font-lora leading-relaxed text-[#5f3c2d]">
-        Bagi yang ingin memberikan tanda kasih kepada mempelai, Anda dapat
-        menggunakan akun virtual atau E-wallet di bawah ini:
+      <p className="text-xs md:text-sm lg:text-lg max-w-7xl mx-auto mb-10 font-lora leading-relaxed text-[#5f3c2d]">
+        Kehadiran Bapak/Ibu/Saudara/i merupakan hadiah terbaik yang kami
+        harapkan. Bila ingin memberikan hadiah dalam bentuk lain, silahkan ketuk tombol dibawah ini.
       </p>
 
       <div className="max-w-5xl mx-auto space-y-6">
         {accounts.map((item, index) => (
           <div
             key={index}
-            className="h-12 lg:h-20 flex flex-row items-center justify-between bg-[#875740] text-white rounded-md overflow-hidden"
+            className="h-16 lg:h-20 flex flex-row items-center justify-between bg-[#875740] text-white rounded-md overflow-hidden"
           >
             {/* Nama */}
-            <div className="w-1/3 px-4 py-3 text-left font-semibold font-lora">
+            <div className="w-1/3 px-4 py-3 text-left text-sm md:text-base lg:text-lg font-semibold font-lora">
               {item.name}
             </div>
 
             {/* Bank & Nomor */}
             <div className="w-2/3 bg-[#704D34] px-4 py-3 lg:py-6 flex justify-between items-center relative font-lora">
               <div className="text-left">
-                <p className="text-sm ">{item.bank}</p>
-                <p className="text-xs">{item.number}</p>
+                <p className="text-xs md:text-sm lg:text-base">{item.bank}</p>
+                <p className="text-[10px] md:text-xs lg:text-sm">{item.number}</p>
               </div>
 
               {/* Copy Button */}

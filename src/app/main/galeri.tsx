@@ -3,20 +3,23 @@
 import { useState } from 'react';
 
 const images = [
-  "/img/galeri1.JPG",
-  "/img/galeri2.JPG",
-  "/img/galeri3.JPG",
-  "/img/galeri4.JPG",
-  "/img/galeri5.JPG",
-  "/img/galeri6.JPG",
-  "/img/galeri7.JPG",
-  "/img/galeri8.JPG",
-  "/img/galeri9.JPG",
-  "/img/galeri10.JPG",
+  "/img/g1.jpg",
+  "/img/g2.jpg",
+  "/img/g3.jpg",
+  "/img/g4.jpg",
+  "/img/g5.jpg",
+  "/img/g6.jpg",
+  "/img/g7.jpg",
+  "/img/g8.jpg",
+  "/img/g9.jpg",
+  "/img/g10.jpg",
+  "/img/g11.jpg",
+  "/img/g12.jpg",
+  "/img/g13.jpg",
 ];
 
 // Ganti dengan ID video kamu (bisa dari link: https://www.youtube.com/watch?v=VIDEO_ID)
-const YOUTUBE_VIDEO_ID = "8MuPRNPVXYU"; // ganti dengan ID asli
+const YOUTUBE_VIDEO_ID = "PXDyz2S0TEw"; // ganti dengan ID asli
 
 export default function Gallery() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -35,13 +38,13 @@ export default function Gallery() {
 
   return (
     <section className="px-4 py-24 mx-auto max-w-7xl ">
-      <h1 className="text-5xl sm:text-6xl md:text-7xl text-[#5f3c2d] tangerine-bold text-center">
+      <h1 className="text-5xl lg:text-6xl xl:text-7xl text-[#5f3c2d] tangerine-bold text-center">
         Our Gallery
       </h1>
       <img
     src="/img/line-cok.png"
     alt="Ornamen Pembatas"
-    className="mx-auto mt-2 mb-8  w-52 sm:w-64 md:w-80"
+    className="mx-auto mt-2 mb-8 w-56 lg:w-64 xl:w-80"
   />
 
       {/* Video YouTube */}

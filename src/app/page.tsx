@@ -1,12 +1,12 @@
-// app/page.tsx
 'use client'
 
 import { Suspense } from 'react';
 import Home from './home';
+import LoadingScreen from './loading';
 
 export default function Page() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<LoadingScreen />}>
       <Home />
     </Suspense>
   );

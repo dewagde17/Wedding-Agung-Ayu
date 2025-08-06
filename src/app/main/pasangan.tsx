@@ -67,7 +67,7 @@ export default function Pasangan() {
     {/* Text */}
     <div className="sm:px-2 py-4 text-center text-[#5f3c2d]">
       <p className="text-2xl md:text-3xl lg:text-3xl allura-regular">IPTU I Gede Agung Sukamara, S.Tr.K.</p>
-      <p className="mt-2 text-sm md:text-base font-lora">
+      <p className="mt-2 text-sm lg:text-base font-lora">
         Putra dari <br />
         Bpk. I Komang Kariasa <br />&<br />Ibu Ni Luh Sumarini
       </p>
@@ -109,7 +109,7 @@ export default function Pasangan() {
     {/* Text */}
     <div className="relative sm:px-2 py-4 text-center text-[#5f3c2d]">
       <p className="text-2xl md:text-3xl lg:text-3xl allura-regular">Dewa Ayu Sri Adnya Dewi, S.E</p>
-      <p className="mt-2 text-sm md:text-base font-lora">
+      <p className="mt-2 text-sm lg:text-base font-lora">
         Putri dari <br />
         Bpk.  Letkol (Purn) Drs. Dewa Putu Japa, M.Si. <br />&<br /> Ibu Ni Wayan Rini Apriani
       </p>

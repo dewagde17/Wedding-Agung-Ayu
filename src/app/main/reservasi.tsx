@@ -46,24 +46,24 @@ export default function FormReservasi() {
         />
       </div>
 
-      <div className="w-full lg:w-1/2 p-8 bg-[#875740] flex flex-col justify-center min-h-[60vh] relative">
+      <div className="w-full lg:w-1/2 p-8 bg-[#704D34] flex flex-col justify-center min-h-[60vh] relative">
       <img
         src="/img/bgres.png"
         alt="Bunga Kiri"
-        className="absolute top-0 left-0 w-[60vw] min-w-[150px] max-w-[450px] object-contain pointer-events-none opacity-80"
+        className="absolute top-0 left-0 w-[60vw] min-w-[150px] max-w-[450px] object-contain pointer-events-none opacity-60"
       />
       <img
         src="/img/bgres-1.png"
         alt="Bunga Kiri"
-        className="absolute bottom-0 right-0 w-[30vw] min-w-[150px] max-w-[250px] object-contain pointer-events-none opacity-80"
+        className="absolute bottom-0 right-0 w-[30vw] min-w-[150px] max-w-[250px] object-contain pointer-events-none opacity-60"
       />
-        <h2 className="text-5xl md:text-6xl tangerine-bold text-center text-white/80 z-5">
+        <h2 className="text-5xl lg:text-6xl tangerine-bold text-center text-white z-5">
           Reservasi
         </h2>
         <img
     src="/img/line-p.png"
     alt="Ornamen Pembatas"
-    className="mx-auto w-52 sm:w-64 md:w-80 mb-2"
+    className="mx-auto w-48 lg:w-60 -mt-1"
   />
 
         <div className="w-full px-4 z-5">

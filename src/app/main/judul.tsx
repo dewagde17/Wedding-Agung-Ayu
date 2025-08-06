@@ -14,11 +14,10 @@ import Countdown from "@/app/main/countdown";
 
 export default function Home({ triggerPlay }: { triggerPlay: boolean }) {
   const images = [
-    "/img/landscape1.JPG",
-    "/img/landscape3.JPG",
-    "/img/landscape4.JPG",
-    "/img/landscape5.JPG",
-    "/img/galeri3.JPG",
+    "/img/hd3.jpg",
+    "/img/hd1.jpg",
+    "/img/hd2.jpg",
+    "/img/hd4.jpg",
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
@@ -80,7 +79,7 @@ export default function Home({ triggerPlay }: { triggerPlay: boolean }) {
   };
 
   return (
-    <div className="relative w-full overflow-x-hidden bg-amber-50">
+    <div className="relative w-full overflow-x-hidden bg-amber-100/80">
       
       {/* Hero Section */}
       <section className="relative w-full h-screen overflow-hidden">
@@ -93,25 +92,20 @@ export default function Home({ triggerPlay }: { triggerPlay: boolean }) {
           style={{ backgroundImage: `url(${img})` }}
         >
           {/* Layer hitam dan gradasi tetap */}
-          <div className="absolute inset-0 bg-black opacity-40 z-10"></div>
+          <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
           
                   </div>
                   
       ))}
 
       {/* Konten utama */}
-      <div className="relative z-20 flex flex-col justify-center items-center h-full text-center px-4">
-        <h1 className="text-white text-5xl md:text-5xl allura-regular mb-4 ">
-          The Wedding Of
+      <div className="relative z-20 flex flex-col justify-center items-center h-full text-center text-white px-4 space-y-2">
+        <p className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tangerine-bold">The Wedding Of</p>
+         <img src="/img/logo-wed.png" alt="Logo" className="w-18 sm:w-24 lg:w-30 z-5" />
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tangerine-bold">
+          Agung <span className="text-4xl allura-regular">&amp;</span> Ayu
         </h1>
-         <img src="/img/logo-wed.png" alt="Logo" className="w-28 md:w-40 lg:w-40" />
-
-        <h2 className="text-white text-5xl md:text-6xl mt-4 mb-4 allura-regular">
-          Agung & Ayu
-        </h2>
-        <p className="text-white text-lg md:text-xl font-lora">
-          31 Agustus 2025
-        </p>
+        <p className="text-xs sm:text-base lg:text-lg font-lora">Minggu, 31 Agustus 2025</p>
       </div>
     </section>
 
@@ -141,9 +135,9 @@ export default function Home({ triggerPlay }: { triggerPlay: boolean }) {
     style={{
       backgroundImage: "url('/img/bg_awan.png')",
       backgroundRepeat: "repeat",
-      backgroundSize: "600px",
+      backgroundSize: "700px",
       backgroundPosition: "center",
-      opacity: 0.55, // 👉 hanya background ini yang transparan
+      opacity: 0.7, // 👉 hanya background ini yang transparan
     }}
   ></div>
         <Doa />
