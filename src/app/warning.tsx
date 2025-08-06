@@ -6,11 +6,15 @@ export default function BrowserWarning() {
   const [showWarning, setShowWarning] = useState(false);
 
   useEffect(() => {
-    const userAgent = [
-      navigator.userAgent,
-      navigator.vendor,
-      (typeof window !== "undefined" && (window as any).opera) || ''
-    ].find(Boolean) as string;
+    let opera: string | undefined = undefined;
+
+    if (typeof window !== 'undefined' && 'opera' in window) {
+      // Jika window.opera ada, pastikan konversi ke string jika perlu
+      opera = String((window as Window & { opera?: unknown }).opera);
+    }
+
+    const userAgent: string =
+      navigator.userAgent || navigator.vendor || opera || '';
 
     const isSamsungInternet = /SamsungBrowser/i.test(userAgent);
 

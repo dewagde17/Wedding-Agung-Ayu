@@ -111,7 +111,7 @@ export default function Home({ triggerPlay }: { triggerPlay: boolean }) {
 
       {/* Audio Control */}
       <div className="fixed bottom-8 right-4 md:right-12 z-50">
-        <audio ref={audioRef} src="/music/music.mp3" loop />
+        <audio ref={audioRef} src="/music/backsound.mp3" loop />
         <button
           onClick={togglePlay}
           className="bg-white/80 hover:bg-white p-2 rounded-full shadow-md text-gray-800 cursor-pointer"
