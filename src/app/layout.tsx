@@ -26,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="color-scheme" content="light only"/>
         {/* Link untuk Font Awesome */}
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link
