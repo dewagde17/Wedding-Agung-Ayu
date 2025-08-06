@@ -1,18 +1,9 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: #ffffff;
-    --foreground: #171717;
-  }
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
 }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: #ededed !important;
-      --foreground: #0a0a0a !important;
-    }
-  }
 
 @theme inline {
   --color-background: var(--background);
@@ -20,6 +11,14 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+     --background:#ededed;
+    --foreground:#0a0a0a;
+  }
+}
+
 
 body {
   background: var(--background);
