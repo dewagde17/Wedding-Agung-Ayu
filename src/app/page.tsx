@@ -1,13 +1,19 @@
-'use client'
+'use client';
 
-import { Suspense } from 'react';
+import { useState } from 'react';
 import Home from './home';
 import LoadingScreen from './loading';
 
 export default function Page() {
+  const [loadingDone, setLoadingDone] = useState(false);
+
   return (
-    <Suspense fallback={<LoadingScreen />}>
-      <Home />
-    </Suspense>
+    <>
+      {!loadingDone ? (
+        <LoadingScreen onFinish={() => setLoadingDone(true)} />
+      ) : (
+        <Home />
+      )}
+    </>
   );
 }
