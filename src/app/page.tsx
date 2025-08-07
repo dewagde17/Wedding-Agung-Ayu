@@ -14,7 +14,7 @@ export default function Page() {
       {!warningDismissed ? (
         <BrowserWarning onDismiss={() => setWarningDismissed(true)} />
       ) : !loadingDone ? (
-        <LoadingScreen onFinish={() => setLoadingDone(true)} />
+        <LoadingScreen onFinishAction={() => setLoadingDone(true)} />
       ) : (
         <Home />
       )}

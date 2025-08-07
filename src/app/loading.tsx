@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
+export default function LoadingScreen({ onFinishAction }: { onFinishAction: () => void }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
         if (next >= 100) {
           clearInterval(interval);
           setTimeout(() => {
-            onFinish(); // Setelah progress 100, lanjut ke Home
+            onFinishAction(); // Setelah progress 100, lanjut ke Home
           }, 500); // Bisa dikasih delay jika mau transisi smooth
         }
         return next;
@@ -20,7 +20,7 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
     }, 20); // Kecepatan loading (misal 100x20ms = 2 detik)
 
     return () => clearInterval(interval);
-  }, [onFinish]);
+  }, [onFinishAction]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-black transition-opacity duration-500">

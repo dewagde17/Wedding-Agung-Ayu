@@ -95,7 +95,7 @@ export default function Home({ triggerPlay }: { triggerPlay: boolean }) {
               alt={`Slide ${index}`}
               fill
               className="object-cover"
-              priority={index === 0}
+              priority
             />
             <div className="absolute inset-0 bg-black opacity-60 z-10" />
           </div>
