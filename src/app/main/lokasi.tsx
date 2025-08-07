@@ -5,24 +5,37 @@ import "animate.css";
 function Lokasi() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState('pawiwahan');
-  const [isVisible, setIsVisible] = useState(false);
+  const [isJudulVisible, setIsJudulVisible] = useState(false);
+  const [isPawiwahanVisible, setIsPawiwahanVisible] = useState(false);
+  const [isResepsiVisible, setIsResepsiVisible] = useState(false);
 
+  const JudulRef = useRef(null);
   const PawiwahanRef = useRef(null);
-  const LokasiPawiwahanRef = useRef(null);
   const ResepsiRef = useRef(null);
-  const LokasiResepsiRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target === JudulRef.current) {
+              setIsJudulVisible(true);
+            }
+            if (entry.target === PawiwahanRef.current) {
+              setIsPawiwahanVisible(true);
+            }
+            if (entry.target === ResepsiRef.current) {
+              setIsResepsiVisible(true);
+            }
+          }
+        });
       },
-      { threshold: 0.5 }
+      {
+        threshold: 0.5,
+      }
     );
 
-    const refs = [PawiwahanRef, LokasiPawiwahanRef, ResepsiRef, LokasiResepsiRef];
+    const refs = [JudulRef, PawiwahanRef, ResepsiRef];
     refs.forEach((ref) => {
       if (ref.current) observer.observe(ref.current);
     });
@@ -33,6 +46,7 @@ function Lokasi() {
       });
     };
   }, []);
+
 
   const openModal = (type: SetStateAction<string>) => {
     setModalType(type);
@@ -45,27 +59,27 @@ function Lokasi() {
   return (
     <div className="relative mb-20">
 
-  <div className="absolute -bottom-24 -left-20 -z-10 opacity-60">
-    <img
-      src="/img/pura.png"
-      alt="Dekorasi"
-      className="w-60 md:w-80 lg:w-100"
-    />
-  </div>
-  {/* Garis Motif Pembatas */}
+      <div className="absolute -bottom-24 -left-20 -z-10 opacity-60">
+        <img
+          src="/img/pura.png"
+          alt="Dekorasi"
+          className="w-60 md:w-80 lg:w-100"
+        />
+      </div>
+      {/* Garis Motif Pembatas */}
       {/* Judul Section */}
       <div
-        ref={PawiwahanRef}
-        className={`${isVisible ? "animate__animated animate__fadeInDown animate__slower" : "opacity-0"}`}
+        ref={JudulRef}
+        className={`${isJudulVisible ? "animate__animated animate__fadeInDown animate__slower" : "opacity-0"}`}
       >
         <p className="text-5xl sm:text-6xl text-[#5f3c2d] pt-18 text-center tangerine-bold">
           Our Wedding Event
         </p>
         <img
-    src="/img/line-cok.png"
-    alt="Ornamen Pembatas"
-    className="mx-auto mt-2 w-52 sm:w-64 md:w-92"
-  />
+          src="/img/line-cok.png"
+          alt="Ornamen Pembatas"
+          className="mx-auto mt-2 w-52 sm:w-64 md:w-92"
+        />
       </div>
 
       {/* Grid 2 kolom responsif */}
@@ -73,10 +87,9 @@ function Lokasi() {
         {/* Kolom Pawiwahan */}
         <div className="flex flex-col items-center text-center lg:ml-50">
           <div
-            ref={LokasiPawiwahanRef}
-            className={`relative flex flex-col items-center text-center ${
-              isVisible ? "animate__animated animate__fadeInLeft animate__slower" : "opacity-0"
-            }`}
+            ref={PawiwahanRef}
+            className={`relative flex flex-col items-center text-center ${isPawiwahanVisible ? "animate__animated animate__fadeInLeft animate__slower" : "opacity-0"
+              }`}
           >
             {/* Judul dan Waktu */}
             <div className="text-[#5f3c2d]">
@@ -134,9 +147,8 @@ function Lokasi() {
         <div className="flex flex-col items-center lg:mr-50">
           <div
             ref={ResepsiRef}
-            className={`relative flex flex-col items-center text-center ${
-              isVisible ? "animate__animated animate__fadeInRight animate__slower" : "opacity-0"
-            }`}
+            className={`relative flex flex-col items-center text-center ${isResepsiVisible ? "animate__animated animate__fadeInRight animate__slower" : "opacity-0"
+              }`}
           >
             {/* Judul dan Waktu */}
             <div className="text-[#5f3c2d] tangerine-bold">
@@ -156,7 +168,7 @@ function Lokasi() {
               <p className="text-[#5f3c2d] font-lora">Balai Pertemuan Bhumiku</p>
             </div>
 
-         <div className="flex flex-col items-center gap-4 px-6 pb-6">
+            <div className="flex flex-col items-center gap-4 px-6 pb-6">
               {/* SIMPAN TANGGAL */}
               <a
                 href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Resepsi%20Agung%20dan%20Ayu&dates=20250831T100000Z/20250831T130000Z&details=Resepsi%20Agung%20%26%20Ayu&location=Balai%20Pertemuan%20Bhumiku&sf=true&output=xml"
