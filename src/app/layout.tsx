@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Undangan Pernikahan Agung & Ayu",
   description: "Undangan Pernikahan Agung & Ayu",
+  icons: "/logo-wed.png"
 };
 
 export default function RootLayout({
