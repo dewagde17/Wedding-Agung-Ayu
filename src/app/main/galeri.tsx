@@ -3,20 +3,26 @@
 import { useState } from 'react';
 
 const images = [
-  "/img/g1.jpg",
-  "/img/g2.jpg",
+  "/img/g1.jpg", // potrait
+  "/img/g4.jpg", // landscape
+  "/img/g11.jpg",
   "/img/g3.jpg",
-  "/img/g4.jpg",
+  "/img/g19.jpg",
   "/img/g5.jpg",
   "/img/g6.jpg",
   "/img/g7.jpg",
-  "/img/g8.jpg",
-  "/img/g9.jpg",
   "/img/g10.jpg",
-  "/img/g11.jpg",
-  "/img/g12.jpg",
+   "/img/g9.jpg",
   "/img/g13.jpg",
+  "/img/g2.jpg",
+  "/img/g16.jpg",
+  "/img/g17.jpg",
+  "/img/g12.jpg",
+  "/img/g15.jpg",
+  "/img/g18.jpg",
+  "/img/g9.jpg",
 ];
+
 
 // Ganti dengan ID video kamu (bisa dari link: https://www.youtube.com/watch?v=VIDEO_ID)
 const YOUTUBE_VIDEO_ID = "PXDyz2S0TEw"; // ganti dengan ID asli
@@ -60,7 +66,7 @@ export default function Gallery() {
       </div>
 
       {/* Masonry-style Images */}
-      <div className="columns-2 sm:columns-3 md:columns-4 gap-2 space-y-2 transition-all duration-500 ease-in-out">
+      <div className="columns-2 md:columns-4 gap-2 space-y-2">
         {images.map((src, index) => (
           <img
             key={index}

@@ -1,32 +1,5 @@
 'use client';
 
-// import { useEffect, useState } from 'react';
-// import { useAnimationFrame, useMotionValue } from 'framer-motion';
-
-// function useButterflyMotion(delayMs: number, yAmplitude = 25, angleAmplitude = 4) {
-//   const x = useMotionValue(0);
-//   const y = useMotionValue(0);
-//   const rotate = useMotionValue(0);
-//   const [duration, setDuration] = useState(12);
-
-//   useEffect(() => {
-//     const screenWidth = window.innerWidth;
-//     const totalDistance = screenWidth * 2.1;
-//     const speed = 300;
-//     const calculatedDuration = totalDistance / speed;
-//     setDuration(calculatedDuration);
-//   }, []);
-
-//   useAnimationFrame((t) => {
-//     const speed = 0.0025;
-//     const wave = t + delayMs; // offset gerakan sinus
-//     y.set(Math.sin(wave * speed) * yAmplitude);
-//     rotate.set(Math.sin(wave * speed) * angleAmplitude);
-//   });
-
-//   return { x, y, rotate, duration };
-// }
-
 export default function Doa() {
   return (
     <div className="relative mb-8">

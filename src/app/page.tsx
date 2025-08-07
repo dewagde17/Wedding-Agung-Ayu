@@ -3,15 +3,17 @@
 import { useState } from 'react';
 import Home from './home';
 import LoadingScreen from './loading';
-import BrowserWarning from './warning'; // pastikan path sesuai
+import BrowserWarning from './warning';
 
 export default function Page() {
+  const [warningDismissed, setWarningDismissed] = useState(false);
   const [loadingDone, setLoadingDone] = useState(false);
 
   return (
     <>
-      <BrowserWarning />
-      {!loadingDone ? (
+      {!warningDismissed ? (
+        <BrowserWarning onDismiss={() => setWarningDismissed(true)} />
+      ) : !loadingDone ? (
         <LoadingScreen onFinish={() => setLoadingDone(true)} />
       ) : (
         <Home />

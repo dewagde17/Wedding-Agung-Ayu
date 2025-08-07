@@ -48,25 +48,34 @@ export default function Home() {
   >
     <div className="absolute inset-0 bg-black/60"></div>
 
-    <div className="flex flex-col justify-between h-full text-white px-6">
     <div className="flex flex-col justify-center h-full text-center text-white px-6">
-      <div className="flex flex-col animate__animated animate__fadeInUp animate__slower space-y-2 items-center text-center">
-        <p className="text-4xl sm:text-5xl lg:text-6xl tangerine-bold">The Wedding Of</p>
-         <img src="/img/logo-wed.png" alt="Logo" className="w-16 sm:w-20 lg:w-24 z-5" />
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl tangerine-bold">
-          Agung <span className="text-4xl allura-regular">&amp;</span> Ayu
-        </h1>
-        <p className="text-xs sm:text-sm lg:text-base font-lora">Minggu, 31 Agustus 2025</p>
-        <p className="text-xs sm:text-sm lg:text-base mt-10 font-lora">Yth, <br /> <span className="font-bold">{person ? person.nama : 'Bapak/Ibu/Saudara/i'}</span></p>
-        <button
-          onClick={handleButtonClick}
-          className="mt-4 px-6 py-2 rounded-xl bg-[#704D34] hover:bg-[#9a7552] transition text-white text-[10px] sm:text-xs lg:text-sm shadow-md cursor-pointer"
-        >
-          Buka Undangan
-        </button>
-      </div>
-    </div>
+  <div className="flex flex-col animate__animated animate__fadeInDown animate__slower space-y-2 items-center">
+    <p className="text-xs sm:text-sm lg:text-base font-lora tracking-widest" style={{ wordSpacing: "0.2rem" }}>
+      THE WEDDING OF
+    </p>
+    <img src="/img/logo-wed.png" alt="Logo" className="w-16 sm:w-20 lg:w-24" />
+    <h1 className="text-4xl sm:text-5xl lg:text-6xl allura-regular">
+      Agung <span className="text-4xl allura-regular">&amp;</span> Ayu
+    </h1>
+    <p className="text-xs sm:text-sm lg:text-base font-lora">Minggu, 31 Agustus 2025</p>
   </div>
+
+  {/* Bagian Yth, dengan animasi berbeda */}
+  <div className="mt-10 animate__animated animate__fadeInUp animate__slower text-xs sm:text-sm lg:text-base font-lora">
+    <p>
+      Yth, <br />
+      <span className="font-bold">{person ? person.nama : 'Bapak/Ibu/Saudara/i'}</span>
+    </p>
+
+    <button
+      onClick={handleButtonClick}
+      className="mt-4 px-6 py-2 rounded-xl bg-[#704D34] hover:bg-[#9a7552] transition text-white text-[10px] sm:text-xs lg:text-sm shadow-md cursor-pointer"
+    >
+      Buka Undangan
+    </button>
+  </div>
+</div>
+
   </div>
 
   {/* Main Content */}

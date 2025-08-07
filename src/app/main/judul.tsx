@@ -100,18 +100,19 @@ export default function Home({ triggerPlay }: { triggerPlay: boolean }) {
 
       {/* Konten utama */}
       <div className="relative z-20 flex flex-col justify-center items-center h-full text-center text-white px-4 space-y-2">
-        <p className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tangerine-bold">The Wedding Of</p>
-         <img src="/img/logo-wed.png" alt="Logo" className="w-18 sm:w-24 lg:w-30 z-5" />
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tangerine-bold">
+        <p className="text-xs sm:text-sm lg:text-base font-lora tracking-widest" style={{ wordSpacing: "0.2rem" }}>
+          THE WEDDING OF</p>
+         <img src="/img/logo-wed.png" alt="Logo" className="w-16 sm:w-20 lg:w-24" />
+         <h1 className="text-4xl sm:text-5xl lg:text-6xl allura-regular">
           Agung <span className="text-4xl allura-regular">&amp;</span> Ayu
         </h1>
-        <p className="text-xs sm:text-base lg:text-lg font-lora">Minggu, 31 Agustus 2025</p>
+        <p className="text-xs sm:text-sm lg:text-base font-lora">Minggu, 31 Agustus 2025</p>
       </div>
     </section>
 
       {/* Audio Control */}
       <div className="fixed bottom-8 right-4 md:right-12 z-50">
-        <audio ref={audioRef} src="/music/backsound.mp3" loop />
+        <audio ref={audioRef} src="/music/sjd.mp3" loop />
         <button
           onClick={togglePlay}
           className="bg-white/80 hover:bg-white p-2 rounded-full shadow-md text-gray-800 cursor-pointer"

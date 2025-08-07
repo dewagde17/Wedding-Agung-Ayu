@@ -24,7 +24,14 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-black transition-opacity duration-500">
-      <div className="text-xl text-white font-semibold mb-4">Loading {progress}%</div>
+      <div className="flex flex-col text-white mb-1 items-center text-center gap-y-1">
+        <h1 className="text-[10px] sm:text-xs font-lora">THE WEDDING OF</h1>
+         <img src="/img/logo-wed.png" alt="Logo" className="w-12 sm:w-14 lg:w-16 z-5" />
+        <h1 className="text-2xl sm:text-3xl lg:text-3xl allura-regular">
+          Agung <span className="text-3xl allura-regular">&amp;</span> Ayu
+        </h1>
+      </div>
+      <div className="text-sm sm:text-base lg:text-lg text-white font-lora mb-4">Loading {progress}%</div>
       <div className="w-64 h-2 bg-blackrounded-full overflow-hidden">
         <div
           className="h-full bg-white transition-all duration-100"

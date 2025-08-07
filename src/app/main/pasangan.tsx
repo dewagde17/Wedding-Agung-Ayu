@@ -46,7 +46,7 @@ export default function Pasangan() {
   {/* Groom */}
   <div className="flex flex-col h-full justify-start">
     <div
-      className="relative w-full overflow-hidden cursor-pointer aspect-[3/4] group rounded-md"
+      className="relative w-full overflow-hidden cursor-pointer aspect-[7/8] group rounded-full md:rounded-xl"
       onClick={() => setModal({ type: 'groom', index: groomIndex })}
     >
       {groomImages.map((img, i) => (
@@ -76,7 +76,7 @@ export default function Pasangan() {
           href="https://www.instagram.com/agung_sukamara?igsh=MWU2ajdkbzdwcHRqOA=="
           target="_blank"
           rel="noopener noreferrer"
-          className="text-md inline-block text-white hover:text-black font-lora"
+          className="text-sm lg:text-base inline-block text-white hover:text-black font-lora"
         >
           <i className="fa-brands fa-instagram mr-1"></i>
           <span>agung_sukamara</span>
@@ -88,7 +88,7 @@ export default function Pasangan() {
   {/* Bride */}
   <div className="flex flex-col h-full justify-start">
     <div
-      className="relative w-full overflow-hidden cursor-pointer aspect-[3/4] group rounded-md"
+      className="relative overflow-hidden cursor-pointer aspect-[7/8] group rounded-full md:rounded-xl"
       onClick={() => setModal({ type: 'bride', index: brideIndex })}
     >
       {brideImages.map((img, i) => (
@@ -118,7 +118,7 @@ export default function Pasangan() {
           href="https://www.instagram.com/adnya_dewi?igsh=MWZwN2d4dXUzMnRwbw=="
           target="_blank"
           rel="noopener noreferrer"
-          className="text-md inline-block text-white hover:text-black font-lora"
+          className="text-sm lg:text-base inline-block text-white hover:text-black font-lora"
         >
           <i className="fa-brands fa-instagram mr-1"></i>
           <span>adnya_dewi</span>

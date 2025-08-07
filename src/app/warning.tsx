@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from 'react';
 
-export default function BrowserWarning() {
+export default function BrowserWarning({ onDismiss }: { onDismiss: () => void }) {
   const [showWarning, setShowWarning] = useState(false);
 
   useEffect(() => {
     let opera: string | undefined = undefined;
 
     if (typeof window !== 'undefined' && 'opera' in window) {
-      // Jika window.opera ada, pastikan konversi ke string jika perlu
       opera = String((window as Window & { opera?: unknown }).opera);
     }
 
@@ -20,8 +19,11 @@ export default function BrowserWarning() {
 
     if (isSamsungInternet) {
       setShowWarning(true);
+    } else {
+      // Jika bukan Samsung Internet, langsung lanjut
+      onDismiss();
     }
-  }, []);
+  }, [onDismiss]);
 
   if (!showWarning) return null;
 
@@ -30,11 +32,12 @@ export default function BrowserWarning() {
       <div className="bg-gray-900 text-white rounded-lg shadow-lg max-w-sm p-6 text-center">
         <h2 className="text-lg font-semibold mb-2">PERINGATAN!</h2>
         <p className="text-sm mb-4">
-          Browser yang Anda gunakan (Samsung Internet) tidak dapat menampilkan website ini dengan baik. Anda dapat mematikan mode darkmode pada pengaturan browser, atau gunakan browser lain seperti:
+          Browser yang Anda gunakan (Samsung Internet) tidak dapat menampilkan website ini dengan baik.
+          Anda dapat mematikan mode darkmode pada pengaturan browser, atau gunakan browser lain seperti:
         </p>
         <p className="text-sm font-semibold">Google Chrome, Firefox, atau Opera.</p>
         <button
-          onClick={() => setShowWarning(false)}
+          onClick={onDismiss}
           className="mt-4 px-4 py-2 bg-white text-black rounded"
         >
           OK

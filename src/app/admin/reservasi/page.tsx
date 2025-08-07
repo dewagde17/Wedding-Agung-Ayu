@@ -58,12 +58,20 @@ export default function DaftarTamu() {
     }
   };
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 50;
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentData = data.slice(startIndex, startIndex + itemsPerPage);
+
   return (
-    <div className="p-4 md:p-6 overflow-x-auto">
-      <h1 className="text-2xl font-bold mb-4">Daftar Tamu</h1>
-      {loading ? (
-        <p>Memuat data...</p>
-      ) : (
+  <div className="p-4 md:p-6 overflow-x-auto">
+    <h1 className="text-2xl font-bold mb-4">Daftar Tamu</h1>
+    {loading ? (
+      <p>Memuat data...</p>
+    ) : (
+      <>
         <table className="min-w-full border-collapse border border-gray-300 text-sm md:text-base">
           <thead>
             <tr className="bg-gray-100 text-left">
@@ -74,7 +82,7 @@ export default function DaftarTamu() {
             </tr>
           </thead>
           <tbody>
-            {data.map((tamu) => (
+            {currentData.map((tamu) => (
               <tr key={tamu.id}>
                 <td className="border px-4 py-2">{tamu.nama}</td>
                 <td className="border px-4 py-2">{tamu.jumlah}</td>
@@ -91,7 +99,29 @@ export default function DaftarTamu() {
             ))}
           </tbody>
         </table>
-      )}
-    </div>
-  );
+      </>
+    )}
+    {/* Pagination */}
+        <div className="flex justify-center items-center mt-4 gap-x-4">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-3 py-1 bg-gray-300 rounded disabled:opacity-0"
+          >
+            &larr; Prev
+          </button>
+          <span>
+            Halaman {currentPage} dari {totalPages}
+          </span>
+          <button
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="px-3 py-1 bg-gray-300 rounded disabled:opacity-0"
+          >
+            Next &rarr;
+          </button>
+        </div>
+  </div>
+);
+
 }
