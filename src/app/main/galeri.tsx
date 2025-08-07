@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image'
 
 const images = [
   "/img/g1.jpg", // potrait
@@ -12,7 +13,7 @@ const images = [
   "/img/g6.jpg",
   "/img/g7.jpg",
   "/img/g10.jpg",
-   "/img/g9.jpg",
+  "/img/g9.jpg",
   "/img/g13.jpg",
   "/img/g2.jpg",
   "/img/g16.jpg",
@@ -48,10 +49,10 @@ export default function Gallery() {
         Our Gallery
       </h1>
       <img
-    src="/img/line-cok.png"
-    alt="Ornamen Pembatas"
-    className="mx-auto mt-2 mb-8 w-56 lg:w-64 xl:w-80"
-  />
+        src="/img/line-cok.png"
+        alt="Ornamen Pembatas"
+        className="mx-auto mt-2 mb-8 w-56 lg:w-64 xl:w-80"
+      />
 
       {/* Video YouTube */}
       <div className="mb-12 w-full max-w-6xl mx-auto aspect-video">
@@ -68,13 +69,17 @@ export default function Gallery() {
       {/* Masonry-style Images */}
       <div className="columns-2 md:columns-4 gap-2 space-y-2">
         {images.map((src, index) => (
-          <img
+          <Image
             key={index}
             src={src}
             alt={`Gallery ${index}`}
+            width={500}
+            height={500}
+            loading="lazy"
             onClick={() => setActiveIndex(index)}
-            className="w-full rounded-md cursor-zoom-in hover:opacity-90 transition duration-200"
+            className="w-full h-auto rounded-md cursor-zoom-in hover:opacity-90 transition duration-200"
           />
+
         ))}
       </div>
 

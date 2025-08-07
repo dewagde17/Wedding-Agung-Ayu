@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Link untuk Font Awesome */}
-        <link rel="icon" type="image/png" href="/logo-wed.png" />
+        <link rel="icon" type="image/png" href="/favicon.png"/>
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
