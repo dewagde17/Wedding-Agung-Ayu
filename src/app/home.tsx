@@ -6,7 +6,7 @@ import { db } from "./lib/firebase";
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import Judul from "./main/judul";
 import 'animate.css';
-
+import Image from 'next/image'
 
 export default function Home() {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
@@ -41,41 +41,61 @@ export default function Home() {
     <div className="relative w-screen h-screen overflow-x-hidden">
   {/* Splash Section - Fullscreen without card */}
   <div
-    className={`absolute inset-0 z-50 bg-cover bg-center transition-all duration-1000 ${
-      isButtonClicked ? 'animate__animated animate__slideOutUp' : 'animate__animated animate__fadeIn'
-    }`}
-    style={{ backgroundImage: "url('/img/hd4.jpg')" }}
+    className={`absolute inset-0 z-50 transition-all duration-1000 ${isButtonClicked
+      ? 'animate__animated animate__slideOutUp'
+      : 'animate__animated animate__fadeIn'
+      }`}
   >
-    <div className="absolute inset-0 bg-black/60"></div>
+    {/* Gambar latar belakang */}
+    <div className="absolute inset-0">
+      <Image
+        src="/img/hd4.jpg"
+        alt="Background"
+        fill
+        priority
+        className="object-cover"
+      />
+      {/* Overlay hitam transparan */}
+      <div className="absolute inset-0 bg-black/60 z-10"></div>
+    </div>
 
-    <div className="flex flex-col justify-center h-full text-center text-white px-6">
-  <div className="flex flex-col animate__animated animate__fadeInDown animate__slower space-y-2 items-center">
-    <p className="text-xs sm:text-sm lg:text-base font-lora tracking-widest" style={{ wordSpacing: "0.2rem" }}>
-      THE WEDDING OF
-    </p>
-    <img src="/img/logo-wed.png" alt="Logo" className="w-16 sm:w-20 lg:w-24" />
-    <h1 className="text-4xl sm:text-5xl lg:text-6xl allura-regular">
-      Agung <span className="text-4xl allura-regular">&amp;</span> Ayu
-    </h1>
-    <p className="text-xs sm:text-sm lg:text-base font-lora">Minggu, 31 Agustus 2025</p>
-  </div>
+    {/* Konten di atas background */}
+    <div className="relative z-20 flex flex-col justify-center h-full text-center text-white px-6">
+      <div className="flex flex-col animate__animated animate__fadeInDown animate__slower space-y-2 items-center">
+        <p className="text-xs sm:text-sm lg:text-base font-lora tracking-widest" style={{ wordSpacing: "0.2rem" }}>
+          THE WEDDING OF
+        </p>
 
-  {/* Bagian Yth, dengan animasi berbeda */}
-  <div className="mt-10 animate__animated animate__fadeInUp animate__slower text-xs sm:text-sm lg:text-base font-lora">
-    <p>
-      Yth, <br />
-      <span className="font-bold">{person ? person.nama : 'Bapak/Ibu/Saudara/i'}</span>
-    </p>
+        <div className="relative flex justify-center items-center w-16 sm:w-20 lg:w-24 h-16 sm:h-20 lg:h-24">
+          <Image
+            src="/img/logo-wed.png"
+            alt="Logo"
+            fill
+            className="object-contain"
+          />
+        </div>
 
-    <button
-      onClick={handleButtonClick}
-      className="mt-4 px-6 py-2 rounded-xl bg-[#704D34] hover:bg-[#9a7552] transition text-white text-[10px] sm:text-xs lg:text-sm shadow-md cursor-pointer"
-    >
-      Buka Undangan
-    </button>
-  </div>
-</div>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl allura-regular">
+          Agung <span className="text-4xl allura-regular">&amp;</span> Ayu
+        </h1>
+        <p className="text-xs sm:text-sm lg:text-base font-lora">Minggu, 31 Agustus 2025</p>
+      </div>
 
+      {/* Bagian Yth, dengan animasi berbeda */}
+      <div className="mt-10 animate__animated animate__fadeInUp animate__slower text-xs sm:text-sm lg:text-base font-lora">
+        <p>
+          Yth, <br />
+          <span className="font-bold">{person ? person.nama : 'Bapak/Ibu/Saudara/i'}</span>
+        </p>
+
+        <button
+          onClick={handleButtonClick}
+          className="mt-4 px-6 py-2 rounded-xl bg-[#704D34] hover:bg-[#9a7552] transition text-white text-[10px] sm:text-xs lg:text-sm shadow-md cursor-pointer"
+        >
+          Buka Undangan
+        </button>
+      </div>
+    </div>
   </div>
 
   {/* Main Content */}
@@ -83,6 +103,7 @@ export default function Home() {
     {isButtonClicked && <Judul triggerPlay={isButtonClicked} />}
   </div>
 </div>
+
 
   );
 }

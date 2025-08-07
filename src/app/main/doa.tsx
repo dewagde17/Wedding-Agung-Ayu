@@ -17,11 +17,13 @@ export default function Doa() {
       <img
         src="/img/bg-doa.png"
         alt="Bunga Kiris"
+        loading="eager"
         className="absolute top-10 -left-8 w-[20vw] min-w-[120px] max-w-[300px] object-contain pointer-events-none scale-x-[-1] -z-2"
       />
       <img
         src="/img/bg-doa.png"
         alt="Bunga Kanan"
+        loading="eager"
         className="absolute top-10 -right-8 w-[20vw] min-w-[120px] max-w-[300px] object-contain pointer-events-none -z-2"
       />
 

@@ -10,6 +10,7 @@ import Reservasi from "@/app/main/reservasi";
 import Gift from "@/app/main/gift";
 import Penutup from "@/app/main/penutup";
 import Countdown from "@/app/main/countdown";
+import Image from 'next/image'
 
 
 export default function Home({ triggerPlay }: { triggerPlay: boolean }) {
@@ -52,7 +53,7 @@ export default function Home({ triggerPlay }: { triggerPlay: boolean }) {
         audio
           .play()
           .then(() => setIsPlaying(!audio.paused))
-          .catch(() => {});
+          .catch(() => { });
       }
     };
 
@@ -80,35 +81,39 @@ export default function Home({ triggerPlay }: { triggerPlay: boolean }) {
 
   return (
     <div className="relative w-full overflow-x-hidden bg-amber-100/80">
-      
+
       {/* Hero Section */}
       <section className="relative w-full h-screen overflow-hidden">
-      {images.map((img, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
-            index === currentImage ? "opacity-100 z-0" : "opacity-0 z-0"
-          }`}
-          style={{ backgroundImage: `url(${img})` }}
-        >
-          {/* Layer hitam dan gradasi tetap */}
-          <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
-          
-                  </div>
-                  
-      ))}
+        {images.map((img, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentImage ? "opacity-100 z-0" : "opacity-0 z-0"
+              }`}
+          >
+            <Image
+              src={img}
+              alt={`Slide ${index}`}
+              fill
+              className="object-cover"
+              priority={index === 0}
+            />
+            <div className="absolute inset-0 bg-black opacity-60 z-10" />
+          </div>
 
-      {/* Konten utama */}
-      <div className="relative z-20 flex flex-col justify-center items-center h-full text-center text-white px-4 space-y-2">
-        <p className="text-xs sm:text-sm lg:text-base font-lora tracking-widest" style={{ wordSpacing: "0.2rem" }}>
-          THE WEDDING OF</p>
-         <img src="/img/logo-wed.png" alt="Logo" className="w-16 sm:w-20 lg:w-24" />
-         <h1 className="text-4xl sm:text-5xl lg:text-6xl allura-regular">
-          Agung <span className="text-4xl allura-regular">&amp;</span> Ayu
-        </h1>
-        <p className="text-xs sm:text-sm lg:text-base font-lora">Minggu, 31 Agustus 2025</p>
-      </div>
-    </section>
+
+        ))}
+
+        {/* Konten utama */}
+        <div className="relative z-20 flex flex-col justify-center items-center h-full text-center text-white px-4 space-y-2">
+          <p className="text-xs sm:text-sm lg:text-base font-lora tracking-widest" style={{ wordSpacing: "0.2rem" }}>
+            THE WEDDING OF</p>
+          <img src="/img/logo-wed.png" alt="Logo" className="w-16 sm:w-20 lg:w-24" />
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl allura-regular">
+            Agung <span className="text-4xl allura-regular">&amp;</span> Ayu
+          </h1>
+          <p className="text-xs sm:text-sm lg:text-base font-lora">Minggu, 31 Agustus 2025</p>
+        </div>
+      </section>
 
       {/* Audio Control */}
       <div className="fixed bottom-8 right-4 md:right-12 z-50">
@@ -132,19 +137,12 @@ export default function Home({ triggerPlay }: { triggerPlay: boolean }) {
       {/* Main Content */}
       <div className="relative z-10">
         <div
-    className="absolute inset-0 bg-repeat -z-10"
-    style={{
-      backgroundImage: "url('/img/bg_awan.png')",
-      backgroundRepeat: "repeat",
-      backgroundSize: "700px",
-      backgroundPosition: "center",
-      opacity: 0.7, // 👉 hanya background ini yang transparan
-    }}
-  ></div>
+          className="absolute inset-0 bg-[url('/img/bg_awan.png')] bg-repeat bg-[length:700px] bg-center opacity-70 -z-10"
+        />
         <Doa />
         <Pasangan />
         <Lokasi />
-        <Countdown/>
+        <Countdown />
         <Galeri />
         <Reservasi />
         <Gift />
