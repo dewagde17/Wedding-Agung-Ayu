@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 
 const groomImages = ['/img/pria1.JPG', '/img/pria.JPG'];
@@ -10,10 +10,35 @@ export default function Pasangan() {
   const [groomIndex, setGroomIndex] = useState(0);
   const [brideIndex, setBrideIndex] = useState(0);
   const [modal, setModal] = useState<{ type: 'groom' | 'bride'; index: number } | null>(null);
-
+  const [isVisible, setIsVisible] = useState(false);
+  
+    const GroomRef = useRef(null);
+    const BrideRef = useRef(null);
   // Fade effect
   const [,setGroomFade] = useState(true);
   const [, setBrideFade] = useState(true);
+
+ useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    const refs = [GroomRef, BrideRef];
+    refs.forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => {
+      refs.forEach((ref) => {
+        if (ref.current) observer.unobserve(ref.current);
+      });
+    };
+  }, []);
 
   useEffect(() => {
     const groomTimer = setInterval(() => {
@@ -65,7 +90,10 @@ export default function Pasangan() {
     </div>
 
     {/* Text */}
-    <div className="sm:px-2 py-4 text-center text-[#5f3c2d]">
+    <div ref={GroomRef}
+    className={`sm:px-2 py-4 text-center text-[#5f3c2d]
+        ${isVisible ? "animate__animated animate__fadeInUp animate__slower" : "opacity-0"}
+      `}>
       <p className="text-2xl md:text-3xl lg:text-3xl allura-regular">IPTU I Gede Agung Sukamara, S.Tr.K.</p>
       <p className="mt-2 text-sm lg:text-base font-lora">
         Putra dari <br />
@@ -107,7 +135,10 @@ export default function Pasangan() {
     </div>
 
     {/* Text */}
-    <div className="relative sm:px-2 py-4 text-center text-[#5f3c2d]">
+    <div ref={GroomRef}
+    className={`relative sm:px-2 py-4 text-center text-[#5f3c2d]
+        ${isVisible ? "animate__animated animate__fadeInUp animate__slower" : "opacity-0"}
+      `}>
       <p className="text-2xl md:text-3xl lg:text-3xl allura-regular">Dewa Ayu Sri Adnya Dewi, S.E</p>
       <p className="mt-2 text-sm lg:text-base font-lora">
         Putri dari <br />

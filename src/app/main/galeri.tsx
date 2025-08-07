@@ -1,19 +1,20 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image'
+import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
+import 'animate.css';
 
 const images = [
-  "/img/g1.jpg", // potrait
-  "/img/g4.jpg", // landscape
+  "/img/g1.jpg",
+  "/img/g4.jpg",
   "/img/g11.jpg",
   "/img/g3.jpg",
-  "/img/g19.jpg",
+  "/img/g8.jpg",
   "/img/g5.jpg",
   "/img/g6.jpg",
   "/img/g7.jpg",
   "/img/g10.jpg",
-  "/img/g9.jpg",
+  "/img/g19.jpg",
   "/img/g13.jpg",
   "/img/g2.jpg",
   "/img/g16.jpg",
@@ -24,9 +25,56 @@ const images = [
   "/img/g9.jpg",
 ];
 
+const YOUTUBE_VIDEO_ID = "PXDyz2S0TEw";
 
-// Ganti dengan ID video kamu (bisa dari link: https://www.youtube.com/watch?v=VIDEO_ID)
-const YOUTUBE_VIDEO_ID = "PXDyz2S0TEw"; // ganti dengan ID asli
+// Komponen gambar dengan animasi saat muncul di layar
+function AnimatedImage({ src, index, onClick }: { src: string; index: number; onClick: () => void }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const imageRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target); // supaya animasi hanya sekali
+        }
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    if (imageRef.current) {
+      observer.observe(imageRef.current);
+    }
+
+    return () => {
+      if (imageRef.current) {
+        observer.unobserve(imageRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <div
+      ref={imageRef}
+      className={`transition duration-500 ${isVisible ? 'animate__animated animate__fadeInUp animate__slower' : 'opacity-0'
+        }`}
+    >
+      <Image
+        key={index}
+        src={src}
+        alt={`Gallery ${index}`}
+        width={500}
+        height={500}
+        loading="lazy"
+        onClick={onClick}
+        className="w-full h-auto rounded-md cursor-zoom-in hover:opacity-90 transition duration-200"
+      />
+    </div>
+  );
+}
 
 export default function Gallery() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -44,7 +92,7 @@ export default function Gallery() {
   };
 
   return (
-    <section className="px-4 py-24 mx-auto max-w-7xl ">
+    <section className="px-4 py-24 mx-auto max-w-7xl">
       <h1 className="text-5xl lg:text-6xl xl:text-7xl text-[#5f3c2d] tangerine-bold text-center">
         Our Gallery
       </h1>
@@ -69,17 +117,12 @@ export default function Gallery() {
       {/* Masonry-style Images */}
       <div className="columns-2 md:columns-4 gap-2 space-y-2">
         {images.map((src, index) => (
-          <Image
+          <AnimatedImage
             key={index}
             src={src}
-            alt={`Gallery ${index}`}
-            width={500}
-            height={500}
-            loading="lazy"
+            index={index}
             onClick={() => setActiveIndex(index)}
-            className="w-full h-auto rounded-md cursor-zoom-in hover:opacity-90 transition duration-200"
           />
-
         ))}
       </div>
 

@@ -16,7 +16,26 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Undangan Pernikahan Agung & Ayu",
   description: "Undangan Pernikahan Agung & Ayu",
-  icons: "/logo-wed.png"
+  icons: {
+    icon: '/favicon.ico', // ikon default (favicon)
+    shortcut: '/favicon.ico', // ikon shortcut (untuk iOS/Android lama)
+    apple: '/apple-touch-icon.png', // untuk perangkat Apple
+     },
+  openGraph: {
+    title: "Undangan Pernikahan Agung & Ayu",
+    description: "Yuk hadiri momen spesial kami!",
+    url: "https://wedding-agungayu.com",
+    siteName: "Undangan Agung & Ayu",
+    images: [
+      {
+        url: "https://wedding-agungayu.com/img/g15.jpg", // ✅ path lengkap
+        width: 1200,
+        height: 630,
+        alt: "Undangan Agung & Ayu",
+      },
+    ],
+    type: "website",
+  },   
 };
 
 export default function RootLayout({
@@ -26,9 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {/* Link untuk Font Awesome */}
-        <link rel="icon" type="image/png" href="/favicon.png"/>
+      <head>   
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"

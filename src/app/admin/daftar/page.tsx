@@ -48,7 +48,7 @@ export default function DaftarTamuPage() {
     if (!nama.trim()) return;
 
     const idUnik = generateId();
-    const url = `https://yourdomain.com/undangan/${idUnik}`;
+    const url = `https://wedding-agungayu.com/?id=${idUnik}`;
 
     await addDoc(tamuCollection, {
       nama,

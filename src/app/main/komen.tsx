@@ -76,15 +76,15 @@ export default function WeddingWishes() {
         className="absolute top-0 left-0 w-[200px] sm:w-[300px] md:w-[400px] object-contain pointer-events-none opacity-60"
       />
       <img
-        src="/img/bgkom-1.png"
+        src="/img/bgkom.png"
         alt="Bunga Kiri"
-        className="absolute bottom-0 right-0 w-[200px] sm:w-[300px] md:w-[400px] object-contain pointer-events-none opacity-60"
+        className="absolute bottom-0 right-0 w-[200px] sm:w-[300px] md:w-[400px] object-contain pointer-events-none opacity-60 scale-x-[-1]"
       />
       <div className="relative z-10 max-w-2xl mx-auto items-start">
 
         {/* Form Ucapan */}
         <div className="text-black mb-12 z-5">
-          
+
           <h2 className="text-5xl md:text-6xl tangerine-bold text-center  text-white">Wedding Wishes</h2>
           <img
             src="/img/line-p.png"
@@ -122,30 +122,30 @@ export default function WeddingWishes() {
 
         {/* Daftar Pesan */}
         <div className="w-full max-w-2xl mx-auto">
-  <div className="max-h-96 overflow-y-auto pr-2 space-y-4">
-    {messages.length === 0 ? (
-      <p className="text-center text-white italic">Silakan masukkan ucapan</p>
-    ) : (
-      messages.map((message) => (
-        <div
-          key={message.id}
-          className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 xl:p-4 bg-gray-100 rounded-md shadow-inner flex items-start space-x-4"
-        >
-          <div className="w-8 h-8 rounded-full bg-[#875740] text-white flex items-center justify-center text-xs sm:text-sm font-bold">
-            {getInitials(message.name)}
-          </div>
-          <div>
-            <p className="text-black text-xs sm:text-sm lg:text-base font-lora-b">{message.name}</p>
-            <p className="text-black/70 text-[10px] sm:text-xs lg:text-sm font-lora">{message.wish}</p>
-            <p className="text-black/70 text-[8px] sm:text-[10px] lg:text-xs font-lora">
-              {new Date(message.date.seconds * 1000).toLocaleString()}
-            </p>
+          <div className="max-h-96 overflow-y-auto pr-2 space-y-4">
+            {messages.length === 0 ? (
+              <p className="text-center text-sm text-white viaoda-libre-regular">Silakan masukkan ucapan</p>
+            ) : (
+              messages.map((message) => (
+                <div
+                  key={message.id}
+                  className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 xl:p-4 bg-gray-100 rounded-md shadow-inner flex items-start space-x-4"
+                >
+                  <div className="w-8 h-8 rounded-full bg-[#875740] text-white flex items-center justify-center text-xs sm:text-sm font-bold">
+                    {getInitials(message.name)}
+                  </div>
+                  <div>
+                    <p className="text-black text-xs sm:text-sm lg:text-base font-lora-b">{message.name}</p>
+                    <p className="text-black/70 text-[10px] sm:text-xs lg:text-sm font-lora">{message.wish}</p>
+                    <p className="text-black/70 text-[8px] sm:text-[10px] lg:text-xs font-lora">
+                      {new Date(message.date.seconds * 1000).toLocaleString()}
+                    </p>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
-      ))
-    )}
-  </div>
-</div>
 
       </div>
     </div>

@@ -17,7 +17,7 @@ export default function LoadingScreen({ onFinishAction }: { onFinishAction: () =
         }
         return next;
       });
-    }, 20); // Kecepatan loading (misal 100x20ms = 2 detik)
+    }, 40); // Kecepatan loading (misal 100x20ms = 2 detik)
 
     return () => clearInterval(interval);
   }, [onFinishAction]);
@@ -31,7 +31,7 @@ export default function LoadingScreen({ onFinishAction }: { onFinishAction: () =
           Agung <span className="text-3xl allura-regular">&amp;</span> Ayu
         </h1>
       </div>
-      <div className="text-sm sm:text-base lg:text-lg text-white font-lora mb-4">Loading {progress}%</div>
+      <div className="text-xs sm:text-sm lg:text-base text-white font-lora mb-4">Loading {progress}%</div>
       <div className="w-64 h-2 bg-blackrounded-full overflow-hidden">
         <div
           className="h-full bg-white transition-all duration-100"

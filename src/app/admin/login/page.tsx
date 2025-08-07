@@ -14,6 +14,7 @@ export default function LoginPage() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
 
     try {
       // Cari user berdasarkan username
@@ -28,14 +29,20 @@ export default function LoginPage() {
       const userData = snapshot.docs[0].data();
       const isPasswordValid = await bcrypt.compare(password, userData.password);
 
-      if (isPasswordValid) {
-        localStorage.setItem('isLoggedIn', 'true');
-        router.push('/admin');
-      } else {
+      if (!isPasswordValid) {
         setError('Password salah');
+        return;
       }
+
+      // ✅ Simpan login session
+      const loginTime = Date.now();
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('admin_login', JSON.stringify({ time: loginTime }));
+
+      router.push('/admin');
+
     } catch (err) {
-      console.error(err);
+      console.error('Login error:', err);
       setError('Terjadi kesalahan saat login');
     }
   };

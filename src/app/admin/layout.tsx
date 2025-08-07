@@ -8,21 +8,45 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  // Sembunyikan navbar saat berada di /admin/login
   const hideNavbar = pathname === '/admin/login';
 
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('loginTime');
     router.replace('/admin/login');
   };
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn !== 'true') {
+    const loginTime = localStorage.getItem('loginTime');
+
+    if (isLoggedIn !== 'true' || !loginTime) {
+      router.replace('/admin/login');
+      return;
+    }
+
+    const loginTimestamp = parseInt(loginTime, 10);
+    const oneHour = 60 * 60 * 1000;
+    const now = Date.now();
+
+    if (now - loginTimestamp > oneHour) {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('loginTime');
       router.replace('/admin/login');
     }
-    
   }, [router]);
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('loginTime');
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-800">
@@ -42,7 +66,6 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           </button>
         </nav>
       )}
-
       <main className="p-6">{children}</main>
     </div>
   );
