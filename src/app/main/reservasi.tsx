@@ -17,6 +17,9 @@ export default function FormReservasi() {
     const jumlah = formData.get('jumlah')?.toString() || '';
     const kehadiran = formData.get('kehadiran')?.toString() || '';
 
+      console.log('Nama:', nama);
+  console.log('Jumlah:', jumlah);
+  console.log('Kehadiran:', kehadiran);
     try {
       await addDoc(collection(db, 'reservasi'), {
         nama,
@@ -95,8 +98,8 @@ export default function FormReservasi() {
       >
         <option className='text-black' value="">Pilih jumlah tamu</option>
         <option className='text-black' value="-">-</option>
-        <option className='text-black' value="2">1 Orang</option>
-        <option className='text-black' value="3">2 Orang</option>
+        <option className='text-black' value="1">1 Orang</option>
+        <option className='text-black' value="2">2 Orang</option>
         
       </select>
     </div>

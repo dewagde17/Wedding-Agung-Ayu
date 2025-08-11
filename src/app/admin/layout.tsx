@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
@@ -9,44 +9,64 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   const hideNavbar = pathname === '/admin/login';
+  const [authChecked, setAuthChecked] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('loginTime');
+    localStorage.removeItem('lastActivityTime');
     router.replace('/admin/login');
   };
 
+  // Update aktivitas user
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    const loginTime = localStorage.getItem('loginTime');
+    const updateActivity = () => {
+      if (localStorage.getItem('isLoggedIn') === 'true') {
+        localStorage.setItem('lastActivityTime', Date.now().toString());
+      }
+    };
 
-    if (isLoggedIn !== 'true' || !loginTime) {
-      router.replace('/admin/login');
+    window.addEventListener('click', updateActivity);
+    window.addEventListener('keypress', updateActivity);
+    window.addEventListener('mousemove', updateActivity);
+
+    return () => {
+      window.removeEventListener('click', updateActivity);
+      window.removeEventListener('keypress', updateActivity);
+      window.removeEventListener('mousemove', updateActivity);
+    };
+  }, []);
+
+  // Cek login + waktu aktivitas
+  useEffect(() => {
+    if (authChecked) return;
+
+    if (hideNavbar) {
+      setAuthChecked(true);
       return;
     }
 
-    const loginTimestamp = parseInt(loginTime, 10);
-    const oneHour = 60 * 60 * 1000;
-    const now = Date.now();
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const lastActivity = localStorage.getItem('lastActivityTime');
 
-    if (now - loginTimestamp > oneHour) {
-      localStorage.removeItem('isLoggedIn');
-      localStorage.removeItem('loginTime');
-      router.replace('/admin/login');
+    if (isLoggedIn === 'true' && lastActivity) {
+      const lastActivityTimestamp = parseInt(lastActivity, 10);
+      const thirtyMinutes = 30 * 60 * 1000;
+      const now = Date.now();
+
+      // Kalau masih dalam 30 menit sejak aktivitas terakhir → tetap login
+      if (now - lastActivityTimestamp <= thirtyMinutes) {
+        setAuthChecked(true);
+        return;
+      }
     }
-  }, [router]);
 
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      localStorage.removeItem('isLoggedIn');
-      localStorage.removeItem('loginTime');
-    };
+    // Kalau sudah lewat 30 menit tanpa aktivitas
+    handleLogout();
+  }, [hideNavbar, authChecked, router]);
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, []);
+  if (!authChecked && !hideNavbar) {
+    return <div className="p-6">Memeriksa sesi login...</div>;
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-800">

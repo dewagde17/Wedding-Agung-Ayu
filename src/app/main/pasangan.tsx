@@ -76,7 +76,7 @@ export default function Pasangan() {
   const activeImages = modal?.type === 'groom' ? groomImages : brideImages;
 
   return (
-    <div className="grid md:grid-cols-2 gap-10 md:gap-6 px-4 sm:px-6 md:px-10 lg:px-20 xl:px-32 2xl:px-48 pt-8 pb-10">
+    <div className="grid md:grid-cols-2 gap-10 md:gap-6 px-10 sm:px-14 md:px-17 lg:px-20 xl:px-32 2xl:px-48 pt-0 md:pt-8 pb-10">
 
       {/* Groom */}
       <div className="flex flex-col h-full justify-start">

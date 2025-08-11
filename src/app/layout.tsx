@@ -23,7 +23,7 @@ export const metadata: Metadata = {
      },
   openGraph: {
     title: "Undangan Pernikahan Agung & Ayu",
-    description: "Yuk hadiri momen spesial kami!",
+    description: "Minggu, 31 Agustus 2025 || Resepsi Pernikahan Agung & Ayu",
     url: "https://wedding-agungayu.com",
     siteName: "Undangan Agung & Ayu",
     images: [

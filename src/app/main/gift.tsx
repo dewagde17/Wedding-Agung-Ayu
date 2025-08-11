@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function WeddingGift() {
   const accounts = [
@@ -10,9 +10,9 @@ export default function WeddingGift() {
       number: '7720922473',
     },
     {
-      name: 'BCA',
+      name: 'Bank Mandiri',
       bank: 'Dewa Ayu Sri Adnya Dewi',
-      number: '7720552153',
+      number: '1570011177210',
     },
   ];
 
@@ -24,6 +24,42 @@ export default function WeddingGift() {
       setTimeout(() => setCopiedIndex(null), 2000);
     });
   };
+
+    const [depanVisible, setDepanVisible] = useState(false);
+    const [belakangVisible, setBelakangVisible] = useState(false);
+  
+  
+    const DepanRef = useRef(null);
+    const BelakangRef = useRef(null);
+    
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (entry.target === DepanRef.current) {
+                setDepanVisible(true);
+              }
+              if (entry.target === BelakangRef.current) {
+                setBelakangVisible(true);
+              }
+            }
+          });
+        },
+        {
+          threshold: 0.5,
+        }
+      );
+  
+      if (DepanRef.current) observer.observe(DepanRef.current);
+      if (BelakangRef.current) observer.observe(BelakangRef.current);
+  
+      return () => {
+        if (DepanRef.current) observer.unobserve(DepanRef.current);
+        if (BelakangRef.current) observer.unobserve(BelakangRef.current);
+      };
+    }, []);
+  
 
   return (
     <section className="py-16 px-4 text-center text-[#593131]">
@@ -41,16 +77,24 @@ export default function WeddingGift() {
       <div className="max-w-5xl mx-auto space-y-6">
         {accounts.map((item, index) => (
           <div
+            
             key={index}
-            className="h-16 lg:h-20 flex flex-row items-center justify-between bg-[#875740] text-white rounded-md overflow-hidden"
+            className="h-16 lg:h-20 flex flex-row text-white rounded-md overflow-hidden"
+               
           >
             {/* Nama */}
-            <div className="w-1/3 px-4 py-3 text-left text-sm md:text-base lg:text-lg font-semibold font-lora">
+            <div 
+            ref={DepanRef}
+            className={`w-1/3 h-full flex px-4 py-3 lg:py-6 items-center justify-between text-left text-sm md:text-base bg-[#875740] lg:text-lg font-semibold font-lora
+              ${depanVisible ? "animate__animated animate__fadeInLeft animate__slower" : "opacity-0"}`}>
               {item.name}
             </div>
 
             {/* Bank & Nomor */}
-            <div className="w-2/3 bg-[#704D34] px-4 py-3 lg:py-6 flex justify-between items-center relative font-lora">
+            <div
+             ref={BelakangRef}
+             className={`w-2/3 h-full bg-[#704D34] px-4 py-3 lg:py-6 flex justify-between items-center relative font-lora
+              ${belakangVisible ? "animate__animated animate__fadeInRight animate__slower" : "opacity-0"} `}>
               <div className="text-left">
                 <p className="text-xs md:text-sm lg:text-base">{item.bank}</p>
                 <p className="text-[10px] md:text-xs lg:text-sm">{item.number}</p>
