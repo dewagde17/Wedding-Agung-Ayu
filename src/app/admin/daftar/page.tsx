@@ -11,19 +11,22 @@ import {
   query,
   Timestamp,
   updateDoc,
+  orderBy,
 } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 type Tamu = {
   id: string;
   nama: string;
   url: string;
   createdAt: Timestamp;
-  docId?: string; // untuk menyimpan ID dokumen dari Firestore
+  docId?: string;
 };
 
 export default function DaftarTamuPage() {
-    const router = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -31,6 +34,7 @@ export default function DaftarTamuPage() {
       router.replace('/admin/login');
     }
   }, [router]);
+
   const [nama, setNama] = useState('');
   const [dataTamu, setDataTamu] = useState<Tamu[]>([]);
   const [editId, setEditId] = useState<string | null>(null);
@@ -72,8 +76,9 @@ export default function DaftarTamuPage() {
     setEditNama('');
   };
 
+  // Ambil data & urutkan terbaru di atas
   useEffect(() => {
-    const q = query(tamuCollection);
+    const q = query(tamuCollection, orderBy("createdAt", "desc"));
     const unsub = onSnapshot(q, (snapshot) => {
       const hasil: Tamu[] = snapshot.docs.map((doc) => ({
         ...(doc.data() as Tamu),
@@ -84,12 +89,31 @@ export default function DaftarTamuPage() {
     return () => unsub();
   }, []);
 
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 50;
-
   const totalPages = Math.ceil(dataTamu.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentTamu = dataTamu.slice(startIndex, startIndex + itemsPerPage);
+
+  // Export Excel
+  const exportToExcel = () => {
+    const exportData = dataTamu.map((t, index) => ({
+      No: index + 1,
+      Nama: t.nama,
+      ID: t.id,
+      URL: t.url,
+      CreatedAt: t.createdAt.toDate().toLocaleString()
+    }));
+    const worksheet = XLSX.utils.json_to_sheet(exportData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Daftar Tamu");
+    const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+    const blob = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+    saveAs(blob, `daftar_tamu_${new Date().toISOString().slice(0, 10)}.xlsx`);
+  };
 
   return (
     <div className="max-w-screen-2xl mx-auto px-4 py-8 space-y-6">
@@ -110,6 +134,16 @@ export default function DaftarTamuPage() {
           Tambah
         </button>
       </form>
+
+      {/* Tombol Export */}
+      <div className="flex">
+        <button
+          onClick={exportToExcel}
+          className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+        >
+          Export ke Excel
+        </button>
+      </div>
 
       <div className="overflow-x-auto">
         <table className="w-full border mt-4">
@@ -180,28 +214,27 @@ export default function DaftarTamuPage() {
           </tbody>
         </table>
       </div>
+
       {/* Navigasi Halaman */}
-        <div className="flex justify-center items-center mt-4 gap-x-4">
-          <button
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-            className="px-2 py-1 bg-gray-300 rounded disabled:opacity-0"
-          >
-            &larr; Prev
-          </button>
-          <span>
-            Halaman {currentPage} dari {totalPages}
-          </span>
-          <button
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-            disabled={currentPage === totalPages}
-            className="px-2 py-1 bg-gray-300 rounded disabled:opacity-0"
-          >
-            Next &rarr;
-          </button>
-        </div>
+      <div className="flex justify-center items-center mt-4 gap-x-4">
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+          className="px-2 py-1 bg-gray-300 rounded disabled:opacity-0"
+        >
+          &larr; Prev
+        </button>
+        <span>
+          Halaman {currentPage} dari {totalPages}
+        </span>
+        <button
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={currentPage === totalPages}
+          className="px-2 py-1 bg-gray-300 rounded disabled:opacity-0"
+        >
+          Next &rarr;
+        </button>
+      </div>
     </div>
-);
-
-
+  );
 }

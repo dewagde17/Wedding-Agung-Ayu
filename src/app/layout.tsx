@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Undangan Pernikahan Agung & Ayu",
-  description: "Undangan Pernikahan Agung & Ayu",
+  description: "Minggu, 31 Agustus 2025 || Resepsi Pernikahan Agung & Ayu",
   icons: {
     icon: '/favicon.ico', // ikon default (favicon)
     shortcut: '/favicon.ico', // ikon shortcut (untuk iOS/Android lama)
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "Undangan Agung & Ayu",
     images: [
       {
-        url: "https://wedding-agungayu.com/img/g15.jpg", // ✅ path lengkap
+        url: "https://wedding-agungayu.com/img/g19.jpg", // ✅ path lengkap
         width: 1200,
         height: 630,
         alt: "Undangan Agung & Ayu",
