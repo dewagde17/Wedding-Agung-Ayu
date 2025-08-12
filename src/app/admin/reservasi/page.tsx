@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { collection, getDocs, deleteDoc, doc, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc, doc, query, orderBy, Timestamp } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { useRouter } from 'next/navigation';
 import * as XLSX from 'xlsx';
@@ -12,7 +12,7 @@ type Tamu = {
   nama: string;
   jumlah: string;
   kehadiran: 'belum' | 'hadir' | 'tidak';
-  createdAt?: any;
+  createdAt?: Timestamp;
 };
 
 export default function DaftarTamu() {
