@@ -1,18 +1,17 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { collection, getDocs, deleteDoc, doc, query, orderBy, Timestamp } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc, doc, Timestamp } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { useRouter } from 'next/navigation';
 import * as XLSX from 'xlsx';
 
-// Tipe data tamu
 type Tamu = {
   id: string;
   nama: string;
   jumlah: string;
   kehadiran: 'belum' | 'hadir' | 'tidak';
-  createdAt?: Timestamp;
+  waktu?: Timestamp; // ganti dari createdAt ke waktu
 };
 
 export default function DaftarTamu() {
@@ -35,12 +34,22 @@ export default function DaftarTamu() {
   const ambilData = async () => {
     setLoading(true);
     try {
-      const q = query(collection(db, 'reservasi'), orderBy('createdAt', 'desc'));
-      const snapshot = await getDocs(q);
-      const tamuData: Tamu[] = snapshot.docs.map((docSnap) => ({
-        id: docSnap.id,
-        ...docSnap.data(),
-      })) as Tamu[];
+      const snapshot = await getDocs(collection(db, 'reservasi'));
+      const tamuData: Tamu[] = snapshot.docs.map((docSnap) => {
+        const data = docSnap.data();
+        return {
+          id: docSnap.id,
+          ...data,
+          waktu: data.waktu || null
+        };
+      }) as Tamu[];
+
+      // Sort terbaru di atas
+      tamuData.sort((a, b) => {
+        const timeA = a.waktu?.toDate ? a.waktu.toDate().getTime() : 0;
+        const timeB = b.waktu?.toDate ? b.waktu.toDate().getTime() : 0;
+        return timeB - timeA;
+      });
 
       setData(tamuData);
     } catch (error) {
@@ -69,9 +78,7 @@ export default function DaftarTamu() {
         Nama: t.nama,
         Jumlah: t.jumlah,
         Kehadiran: t.kehadiran,
-        Tanggal: t.createdAt?.toDate
-          ? t.createdAt.toDate().toLocaleString()
-          : '-',
+        Waktu: t.waktu?.toDate().toLocaleString('id-ID') || ''
       }))
     );
 
@@ -102,41 +109,37 @@ export default function DaftarTamu() {
       {loading ? (
         <p>Memuat data...</p>
       ) : (
-        <>
-          <table className="min-w-full border-collapse border border-gray-300 text-sm md:text-base">
-            <thead>
-              <tr className="bg-gray-100 text-left">
-                <th className="border px-4 py-2">Nama</th>
-                <th className="border px-4 py-2">Jumlah</th>
-                <th className="border px-4 py-2">Kehadiran</th>
-                <th className="border px-4 py-2">Tanggal</th>
-                <th className="border px-4 py-2">Aksi</th>
+        <table className="min-w-full border-collapse border border-gray-300 text-sm md:text-base">
+          <thead>
+            <tr className="bg-gray-100 text-left">
+              <th className="border px-4 py-2">Nama</th>
+              <th className="border px-4 py-2">Jumlah</th>
+              <th className="border px-4 py-2">Kehadiran</th>
+              <th className="border px-4 py-2">Waktu</th>
+              <th className="border px-4 py-2">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentData.map((tamu) => (
+              <tr key={tamu.id}>
+                <td className="border px-4 py-2">{tamu.nama}</td>
+                <td className="border px-4 py-2">{tamu.jumlah}</td>
+                <td className="border px-4 py-2 capitalize">{tamu.kehadiran}</td>
+                <td className="border px-4 py-2">
+                  {tamu.waktu?.toDate().toLocaleString('id-ID') || '-'}
+                </td>
+                <td className="border px-4 py-2">
+                  <button
+                    onClick={() => hapusTamu(tamu.id)}
+                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm"
+                  >
+                    Hapus
+                  </button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {currentData.map((tamu) => (
-                <tr key={tamu.id}>
-                  <td className="border px-4 py-2">{tamu.nama}</td>
-                  <td className="border px-4 py-2">{tamu.jumlah}</td>
-                  <td className="border px-4 py-2 capitalize">{tamu.kehadiran}</td>
-                  <td className="border px-4 py-2">
-                    {tamu.createdAt?.toDate
-                      ? tamu.createdAt.toDate().toLocaleString()
-                      : '-'}
-                  </td>
-                  <td className="border px-4 py-2">
-                    <button
-                      onClick={() => hapusTamu(tamu.id)}
-                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm"
-                    >
-                      Hapus
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
+            ))}
+          </tbody>
+        </table>
       )}
 
       {/* Pagination */}
