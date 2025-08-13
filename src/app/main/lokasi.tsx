@@ -160,6 +160,7 @@ function Lokasi() {
                   <p className="text-sm md:text-base lg:text-lg font-lora ">18:00 - 21:00 WITA</p>
                 </div>
               </div>
+              <p className="text-sm md:text-base lg:text-lg font-lora ">(Diawali Prosesi Pedang Pora)</p>
             </div>
 
             {/* Lokasi */}
