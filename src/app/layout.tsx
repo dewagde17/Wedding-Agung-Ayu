@@ -29,8 +29,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://wedding-agungayu.com/img/g19.jpg", // ✅ path lengkap
-        width: 1200,
-        height: 630,
+        width: 500,
+        height: 500,
         alt: "Undangan Agung & Ayu",
       },
     ],
