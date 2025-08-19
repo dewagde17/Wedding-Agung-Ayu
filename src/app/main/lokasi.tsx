@@ -156,7 +156,7 @@ function Lokasi() {
               <div className="flex items-center">
                 <span className="text-4xl md:text-[42px] lg:text-5xl viaoda-libre-regular mr-2">31</span>
                 <div className="flex flex-col justify-center text-left">
-                  <p className="text-sm md:text-base lg:text-lg font-lora">Minggu, Agustus 2024</p>
+                  <p className="text-sm md:text-base lg:text-lg font-lora">Minggu, Agustus 2025</p>
                   <p className="text-sm md:text-base lg:text-lg font-lora ">18:00 - 21:00 WITA</p>
                 </div>
               </div>
